@@ -8,14 +8,6 @@ on:
 
 jobs:
   
-  build:
-    runs-on: ubuntu-latest
-    
-    steps:
-      - run: |
-          echo "Triggered by ${{ github.event_name }}"
-          echo " Branch name: ${{ github.ref }} and your repository is ."
-    
   use-reusable:
     runs-on: ubuntu_latest
     
