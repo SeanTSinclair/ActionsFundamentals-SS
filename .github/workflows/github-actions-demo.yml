@@ -1,0 +1,27 @@
+# This is a basic workflow to help you get started with Actions
+
+name: GitHub Actions Demo
+
+on: 
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+    paths-ignore: [.github/**]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: '6 15 * * 0'
+
+jobs:
+  
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - run: |
+          echo "Triggered by ${{ github.event_name }}"
+          echo " Branch name: ${{ github.ref }} and your repository is ."
+          
+      - uses: actions/checkout@v3
+      
+      - run: tree
