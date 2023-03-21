@@ -1,0 +1,32 @@
+name: GitHub Composite 
+
+on: 
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+    paths: [ hello-world-docker-action/** ]
+
+jobs:
+  
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - run: |
+          echo "Triggered by ${{ github.event_name }}"
+          echo " Branch name: ${{ github.ref }} and your repository is ."
+    
+  use-reusable:
+    runs-on: ubuntu_latest
+    
+    steps: 
+      - uses: actions/checkout@v3
+      
+      - name: Hello World! 
+        id: hello
+        uses: ./hello-world-docker-action
+        with: 
+          person: 'Sean'
+      
+      - name: When
+        run: echo "The time was ${{ steps.hello.outputs.time }}
